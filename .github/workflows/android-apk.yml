@@ -70,10 +70,12 @@ jobs:
         run: chmod +x android/gradlew
 
       - name: Build APK
-        working-directory: android
-        env:
-          SAIENT_ALLOW_DEBUG_RELEASE: 'true'
-        run: ./gradlew assembleRelease --stacktrace --no-daemon
+      working-directory: ./android
+      env:
+        SAIENT_ALLOW_DEBUG_RELEASE: 'true'
+        QUARTZ_ANDROID_FEATURES: ""
+      run: ./gradlew assembleRelease --stacktrace --no-daemon
+      
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
